@@ -2,6 +2,7 @@ import json
 import requests
 from textblob import TextBlob
 
+# receives string or list of strings as argument
 def getScore(tickers):
     response = requests.get('https://stocknewsapi.com/api/v1?tickers={}&items=15&date=04242020-04242020&sortby=unique&token=q4ozzmxwlsgzgp8ht8jucd8iqthrnpj44htf5i4b'.format(tickers)).json()
     # print(response)
@@ -67,5 +68,5 @@ def getScore(tickers):
     print(scores)
     print(ticks_freq)
 
-getScore(['FB','TSLA','AAPL'])
+getScore()
 
