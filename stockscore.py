@@ -4,7 +4,7 @@ from textblob import TextBlob
 
 # receives string or list of strings as argument
 def getScore(tickers):
-    response = requests.get('https://stocknewsapi.com/api/v1?tickers={}&items=15&date=04242020-04242020&sortby=unique&token=q4ozzmxwlsgzgp8ht8jucd8iqthrnpj44htf5i4b'.format(tickers)).json()
+    response = requests.get('https://stocknewsapi.com/api/v1?tickers={}&items=15&date=04242020-04242020&sortby=unique&token=q8r7ekar2hormlqukex0wgfsnk79gymabf9ouu0e'.format(tickers)).json()
     # print(response)
 
     # Filters article text by length and ticker symbol(s), and adds [text, ticker] to list
@@ -65,8 +65,8 @@ def getScore(tickers):
         else:
             scores[ticker] = score
     
-    print(scores)
-    print(ticks_freq)
+    return scores
+    
 
-getScore()
+print(getScore(['AAPL'])
 
