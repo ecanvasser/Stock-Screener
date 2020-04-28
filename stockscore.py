@@ -5,9 +5,9 @@ from textblob import TextBlob
 # receives list of strings as argument
 def getScore(tickers):
     args = tickers
-    final_scores = {}
+    final_scores = []
     for arg in args:
-        response = requests.get('https://stocknewsapi.com/api/v1?tickers={}&items=15&date=04242020-04242020&sortby=unique&token=q8r7ekar2hormlqukex0wgfsnk79gymabf9ouu0e'.format(arg)).json()
+        response = requests.get('https://stocknewsapi.com/api/v1?tickers={}&items=15&date=04242020-04242020&sortby=unique&token=u1hxoe38ayyqryaw2ujmuszvrzmse05jggsszukh'.format(arg)).json()
         # print(response)
 
         # Filters article text by length and ticker symbol(s), and adds [text, ticker] to list
@@ -68,7 +68,7 @@ def getScore(tickers):
             total_score += score
 
         # Inputs final score into final_score dictionary
-        final_scores[arg] = {'sentiment': round(total_score, 2)}
+        final_scores.append({'ticker': arg, 'sentiment': round(total_score, 2)})
         
     return final_scores
-    
+
