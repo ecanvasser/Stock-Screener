@@ -1,5 +1,5 @@
 import sqlite3
-from stockscore import getScore
+from stockscore import Sentiment
 
 conn = sqlite3.connect(':memory:')
 
@@ -10,7 +10,7 @@ c.execute("""CREATE TABLE stocks (
             score integer
             )""")
 
-values = getScore(['AAPL','FB'])
+values = Sentiment.getScore(['AAPL','FB'])
 
 for v in values:
     tick = v['ticker']
