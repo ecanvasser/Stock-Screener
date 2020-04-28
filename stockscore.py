@@ -3,14 +3,8 @@ import requests
 from textblob import TextBlob
 from datetime import date
 
-
-# receives list of strings as argument
-class sentiment_scores:
-    def __init__(self, tickers, past, current):
-        self.tickers = tickers
-        self.past = current
-        self.current = current
-
+class Sentiment:
+    # receives list of strings as argument
     def getScore(tickers):
         args = tickers
         today = date.today().strftime('%m%d%Y')
@@ -77,5 +71,3 @@ class sentiment_scores:
             final_scores.append({'ticker': arg, 'sentiment': round(total_score, 2)})
             
         return final_scores
-
-print(sentiment_scores.getScore(['FB','TSLA']))
