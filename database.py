@@ -1,5 +1,5 @@
 import sqlite3
-from stockscore import Sentiment
+from stockscore import Stock
 
 conn = sqlite3.connect(':memory:')
 
@@ -7,15 +7,17 @@ c = conn.cursor()
 
 c.execute("""CREATE TABLE stocks (
             ticker text,
-            score integer
+            price integer,
+            sentiment integer
             )""")
 
-values = Sentiment.getScore(['AAPL','FB'])
+values = Stock.getScorePrice(['AAPL','FB'])
 
 for v in values:
     tick = v['ticker']
+    price = v['price']
     sent_score = v['sentiment']
-    c.execute("INSERT INTO stocks VALUES (:ticker, :score)", {'ticker': tick, 'score': sent_score})
+    c.execute("INSERT INTO stocks VALUES (:ticker, :price, :sentiment)", {'ticker': tick, 'price': price, 'sentiment': sent_score})
 
 conn.commit()
 
