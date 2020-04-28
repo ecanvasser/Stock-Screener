@@ -3,7 +3,7 @@ import requests
 from textblob import TextBlob
 from datetime import date
 
-class Sentiment:
+class Stock:
     # receives list of strings as argument
     def getScorePrice(tickers):
         args = tickers
