@@ -4,6 +4,9 @@ from textblob import TextBlob
 from datetime import date
 
 class Sentiment:
+    def __init__(self, tickers):
+        self.tickers
+    
     # receives list of strings as argument
     def getScore(tickers):
         args = tickers
