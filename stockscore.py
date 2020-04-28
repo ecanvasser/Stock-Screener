@@ -5,19 +5,22 @@ from datetime import date
 
 class Sentiment:
     # receives list of strings as argument
-    def getScore(tickers):
+    def getScorePrice(tickers):
         args = tickers
         today = date.today().strftime('%m%d%Y')
-        final_scores = []
+        final_stats = []
         for arg in args:
-            response = requests.get('https://stocknewsapi.com/api/v1?tickers={}&items=15&date={}-{}&sortby=unique&token=josavb8slxqjchve9dnspuj7a29dtosnqr1k27lx'.format(arg,today,today)).json()
+            sentiment_response = requests.get('https://stocknewsapi.com/api/v1?tickers={}&items=15&date={}-{}&sortby=unique&token='.format(arg,today,today)).json()
+
+            price_response = requests.get('https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={}&interval=1min&apikey='.format(arg)).json()
+            prices_json = list(price_response['Time Series (1min)'].values())
 
             # Filters article text by length and ticker symbol(s), and adds [text, ticker] to list
             text_tick = []
-            for i in range(len(response['data'])):
-                for item in response['data']:
-                    tick = response['data'][i]['tickers']
-                    text = response['data'][i]['text']
+            for i in range(len(sentiment_response['data'])):
+                for item in sentiment_response['data']:
+                    tick = sentiment_response['data'][i]['tickers']
+                    text = sentiment_response['data'][i]['text']
                     text_split = text.split(' ')
                     if (len(tick) == 1) and (len(text_split) > 11):
                         ticker = tick
@@ -68,6 +71,9 @@ class Sentiment:
                 total_score += score
 
             # Inputs final score into final_score dictionary
-            final_scores.append({'ticker': arg, 'sentiment': round(total_score, 2)})
+            final_stats.append({'ticker': arg, 'price': float(prices_json[0]['4. close']), 'sentiment': round(total_score, 2)})
             
-        return final_scores
+        return final_stats
+
+
+print(Sentiment.getScorePrice(['AAPL']))
