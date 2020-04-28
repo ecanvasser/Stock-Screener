@@ -10,9 +10,9 @@ class Stock:
         today = date.today().strftime('%m%d%Y')
         final_stats = []
         for arg in args:
-            sentiment_response = requests.get('https://stocknewsapi.com/api/v1?tickers={}&items=15&date={}-{}&sortby=unique&token=albc92dqv0l5znbc8syscmudiidmtwy6xc6pbfm2'.format(arg,today,today)).json()
+            sentiment_response = requests.get('https://stocknewsapi.com/api/v1?tickers={}&items=15&date={}-{}&sortby=unique&token='.format(arg,today,today)).json()
 
-            price_response = requests.get('https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={}&interval=1min&apikey=Z5ACP1PIYP0CD4SR'.format(arg)).json()
+            price_response = requests.get('https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={}&interval=1min&apikey='.format(arg)).json()
             prices_json = list(price_response['Time Series (1min)'].values())
 
             # Filters article text by length and ticker symbol(s), and adds [text, ticker] to list
