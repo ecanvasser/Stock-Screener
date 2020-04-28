@@ -7,7 +7,7 @@ def getScore(tickers):
     args = tickers
     final_scores = []
     for arg in args:
-        response = requests.get('https://stocknewsapi.com/api/v1?tickers={}&items=15&date=04242020-04242020&sortby=unique&token=u1hxoe38ayyqryaw2ujmuszvrzmse05jggsszukh'.format(arg)).json()
+        response = requests.get('https://stocknewsapi.com/api/v1?tickers={}&items=15&date=04242020-04242020&sortby=unique&token=2nuhqpmlztecuexvvnn0fgbnvhgkyusacssd8hwh'.format(arg)).json()
         # print(response)
 
         # Filters article text by length and ticker symbol(s), and adds [text, ticker] to list
