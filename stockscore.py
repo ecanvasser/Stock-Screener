@@ -10,7 +10,7 @@ class Sentiment:
         today = date.today().strftime('%m%d%Y')
         final_scores = []
         for arg in args:
-            response = requests.get('https://stocknewsapi.com/api/v1?tickers={}&items=15&date={}-{}&sortby=unique&token=josavb8slxqjchve9dnspuj7a29dtosnqr1k27lx'.format(arg,today,today)).json()
+            response = requests.get('https://stocknewsapi.com/api/v1?tickers={}&items=15&date={}-{}&sortby=unique&token=p3nxypef85fncybqwxlxbxfiysb2rxzjdxjzudox'.format(arg,today,today)).json()
 
             # Filters article text by length and ticker symbol(s), and adds [text, ticker] to list
             text_tick = []
@@ -71,3 +71,5 @@ class Sentiment:
             final_scores.append({'ticker': arg, 'sentiment': round(total_score, 2)})
             
         return final_scores
+
+print(Sentiment.getScore(['AAPL']))
