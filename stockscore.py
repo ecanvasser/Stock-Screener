@@ -3,17 +3,28 @@ import requests
 from textblob import TextBlob
 from datetime import date
 
+<<<<<<< HEAD
 class Stock:
+=======
+class Sentiment:
+    def __init__(self, tickers):
+        self.tickers
+    
+>>>>>>> 0eb366e42a7bdbc51370cef54d42821c6e56e568
     # receives list of strings as argument
     def getScorePrice(tickers):
         args = tickers
         today = date.today().strftime('%m%d%Y')
         final_stats = []
         for arg in args:
+<<<<<<< HEAD
             sentiment_response = requests.get('https://stocknewsapi.com/api/v1?tickers={}&items=15&date={}-{}&sortby=unique&token=albc92dqv0l5znbc8syscmudiidmtwy6xc6pbfm2'.format(arg,today,today)).json()
 
             price_response = requests.get('https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol={}&interval=1min&apikey=Z5ACP1PIYP0CD4SR'.format(arg)).json()
             prices_json = list(price_response['Time Series (1min)'].values())
+=======
+            response = requests.get('https://stocknewsapi.com/api/v1?tickers={}&items=15&date={}-{}&sortby=unique&token=p3nxypef85fncybqwxlxbxfiysb2rxzjdxjzudox'.format(arg,today,today)).json()
+>>>>>>> 0eb366e42a7bdbc51370cef54d42821c6e56e568
 
             # Filters article text by length and ticker symbol(s), and adds [text, ticker] to list
             text_tick = []
@@ -73,4 +84,10 @@ class Stock:
             # Inputs final score into final_score dictionary
             final_stats.append({'ticker': arg, 'price': float(prices_json[0]['4. close']), 'sentiment': round(total_score, 2)})
             
+<<<<<<< HEAD
         return final_stats
+=======
+        return final_scores
+
+print(Sentiment.getScore(['AAPL']))
+>>>>>>> 0eb366e42a7bdbc51370cef54d42821c6e56e568
